@@ -1,10 +1,22 @@
+@import "../../responsive.scss";
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100px;
 
-    
+    a, .btn1{
+        transition: all 0.4s ease;
+
+        @include sm{
+            display: none;
+        }
+
+        &:hover{
+            scale: 1.05;
+        }
+    }
+
 
     .left{
         flex: 3;
@@ -22,6 +34,15 @@ nav{
             img{
                 width: 28px;
             }
+
+            span{
+                @include md{
+                    display: none;
+                }
+                @include sm{
+                    display: initial;
+                }
+            }
         }
     }
 
@@ -31,6 +52,7 @@ nav{
         align-items: center;
         justify-content: flex-end;
         height: 100%;
+        margin-right: 10px;
     }
 
     .right a {
@@ -43,7 +65,7 @@ nav{
 
     .btn1 a {
         display: block;
-        padding: 10px 20px;
+        padding: 10px 10px;
         color: #272727;
         border: 3px solid #272727;
         border-radius: 10px;
@@ -76,5 +98,45 @@ nav{
         color: white;
         box-shadow: none;
     }
+       
+    .menuIcon{
+        display: none;
+        z-index: 999;
+
+        img{
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }
         
+        @include sm{
+            display: initial;
+        }
+    }
+    
+    .menu{
+        position: absolute;
+        top: 0;
+        right: -50%;
+        background-color: black;
+        color: white;
+        height: 100vh;
+        width: 50%;
+        transition: all 1s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        &.active{
+            right: 0;
+        }
+
+        @include sm{
+            a{
+                display: initial;
+            }
+        }
+    }
+    
 }
