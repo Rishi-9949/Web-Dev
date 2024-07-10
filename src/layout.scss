@@ -6,6 +6,8 @@
     margin-right: auto;
     padding-right: 20px;
     padding-left: 20px;
+    display: flex;
+    flex-direction: column;
 
 
     @include lg{
@@ -21,4 +23,7 @@
         max-width: 640px;
     }
     
+    .content{
+        flex: 1;
+    }
 }
