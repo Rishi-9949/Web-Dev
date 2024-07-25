@@ -11,15 +11,15 @@
 
 
     @include lg{
-        background-color: rgb(100, 170, 212);
+        // background-color: rgb(100, 170, 212);
         max-width: 1280px;
     }
     @include md{
-        background-color: rgb(255, 0, 0);
+        // background-color: rgb(255, 0, 0);
         max-width: 768px;
     }
     @include sm{
-        background-color: rgb(255, 0, 225);
+        // background-color: rgb(255, 0, 225);
         max-width: 640px;
     }
     
