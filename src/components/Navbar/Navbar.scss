@@ -11,10 +11,6 @@ nav{
         @include sm{
             display: none;
         }
-
-        &:hover{
-            scale: 1.05;
-        }
     }
 
 
