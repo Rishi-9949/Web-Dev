@@ -24,7 +24,7 @@ function Card({ item }) {
             </div>
             <div className="feature">
               <img src="/language.png" alt="" />
-              <span>{item.Language}</span>
+              <span>{item.language}</span>
             </div>
           </div>
           <div className="icons">
