@@ -58,7 +58,7 @@ export const listData = [
 
 export const singlePostData = { 
     id: 1, 
-    title: "Lorem ipsum dolor sit amet consectetur",
+    title: "Lorem ipsum ",
     images: [
         "https://toppsta.com/images/covers/5/9/0/4/9781408855904.webp?t=1709095286",
         "https://t.ly/h3JaN",

@@ -1,6 +1,8 @@
+@import "../../responsive.scss";
+
 .slider{
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     object-fit: cover;
     display: flex;
     gap: 20px;
@@ -15,6 +17,8 @@
         top: 0;
         left: 0;
         background-color: black;
+        z-index: 9999;
+
         
 
         .arrow{
@@ -25,6 +29,13 @@
 
             img{
                 width: 50px;
+
+                @include md{
+                    width: 30px;
+                }
+                @include sm{
+                    width: 20px;
+                }
 
                 &.right{
                     transform: rotate(180deg);
@@ -38,10 +49,10 @@
             align-items: center;
 
             img{
-                width: 800px;
-                height: 800px;
+                width: 600px;
+                height: 600px;
                 object-fit: contain;
-            }
+            }   
         }
 
         .close{
@@ -67,16 +78,22 @@
     }
     .bigImage{
         flex: 3;
+
+        img{
+            object-fit: contain;
+        }
     }
     .smallImages{
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
         gap: 20px;
 
         img{
-            height: 120px;
+            height: 180px;
+            object-fit: contain;
+            
         }
     }
 }
