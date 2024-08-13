@@ -1,9 +1,14 @@
+@import "../../responsive.scss";
 .card{
     display: flex;
     gap: 20px;
 
     .imageContainer{
         height: 200px;
+
+        @include sm{
+            display: none;
+        }
 
         img{
             width: auto;

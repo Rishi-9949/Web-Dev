@@ -1,6 +1,9 @@
+import {useState} from 'react';
 import './chat.scss';
 
 function Chat(){
+
+    const [chat,setChat] = useState (true);
     return (
         <div className="chat">
             <div className="messages">
@@ -26,13 +29,14 @@ function Chat(){
                     <p>Lorem ipsum dolor sit amet.</p>
                 </div>
             </div>
+            {chat && (
             <div className="chatBox">
                 <div className="top">
                     <div className="user">
                         <img src="https://shorturl.at/pbHNU" alt="" />
                         John Doe
                     </div>
-                    <span className="close">X</span>
+                    <span className="close" onClick={()=>setChat(null)}>X</span>
                 </div>
                 <div className="center">
                     <div className="chatMessage">
@@ -64,7 +68,7 @@ function Chat(){
                     <textarea></textarea>
                     <button>Send</button>
                 </div>
-            </div>
+            </div>)}
         </div>
     )
 }

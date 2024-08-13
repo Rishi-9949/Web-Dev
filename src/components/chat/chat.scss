@@ -63,16 +63,55 @@
                     object-fit: cover;
                 }
             }
-            
+
             .close{
                 cursor: pointer;
             }
         }
         .center{
+            height: 350px;
+            overflow: scroll;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
 
+            .chatMessage{
+                width: 50%;
+                &.own{
+                    align-items: flex-end;
+                    text-align: right;
+                }
+
+                span{
+                    font-size: 12px;
+                    background-color: #f7c14b85;
+                    padding: 2px;
+                    border-radius: 5px;
+                }
+            
+            }
         }
         .bottom{
+            border-top: 2px solid #f7c14b85;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
+            textarea{
+                flex: 3;
+                height: 100%;
+                border: none;
+                padding: 20px;
+            }
+            button{
+                flex: 1;
+                background-color: #f7c14b85;
+                height: 100%;
+                border: none;
+                cursor: pointer;
+            }
         }
     }
 }
