@@ -5,8 +5,14 @@ export const addMessage = async (req, res) => {
   const chatId = req.params.chatId;
   const text = req.body.text;
 
+  // Basic validation
+  if (!chatId || !text) {
+    return res.status(400).json({ message: "Chat ID and text are required" });
+  }
+
   try {
-    const chat = await prisma.chat.findUnique({
+    // Finding the chat with correct query using findFirst
+    const chat = await prisma.chat.findFirst({
       where: {
         id: chatId,
         userIDs: {
@@ -15,8 +21,13 @@ export const addMessage = async (req, res) => {
       },
     });
 
-    if (!chat) return res.status(404).json({ message: "Chat not found!" });
+    // If no chat is found, return 404
+    if (!chat) {
+      console.log(`Chat not found for ID: ${chatId} and UserID: ${tokenUserId}`);
+      return res.status(404).json({ message: "Chat not found!" });
+    }
 
+    // Creating a message in the chat
     const message = await prisma.message.create({
       data: {
         text,
@@ -25,19 +36,20 @@ export const addMessage = async (req, res) => {
       },
     });
 
+    // Updating the chat with the new message details
     await prisma.chat.update({
       where: {
         id: chatId,
       },
       data: {
-        seenBy: [tokenUserId],
+        seenBy: { set: [tokenUserId] }, // Ensures `seenBy` is set correctly; adjust as needed
         lastMessage: text,
       },
     });
 
     res.status(200).json(message);
   } catch (err) {
-    console.log(err);
+    console.error("Error adding message:", err); // Log detailed error
     res.status(500).json({ message: "Failed to add message!" });
   }
 };
