@@ -10,7 +10,7 @@ function Pin({ item }) {
           <img src={item.images[0]} alt="" />
           <div className="textContainer">
             <Link to={`/${item.id}`}>{item.title}</Link>
-            <span>{item.bedroom} Quatity</span>
+            <span>{item.language.charAt(0).toUpperCase() + item.language.slice(1)}</span>
             <b>$ {item.price}</b>
           </div>
         </div>

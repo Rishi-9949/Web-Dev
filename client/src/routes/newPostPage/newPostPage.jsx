@@ -11,7 +11,7 @@ function NewPostPage() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +23,12 @@ function NewPostPage() {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),
-          address: inputs.address,
+          author: inputs.author,
           city: inputs.city,
-          bedroom: parseInt(inputs.bedroom),
-          bathroom: parseInt(inputs.bathroom),
+          quantity: parseInt(inputs.quantity),
+          book_version: parseInt(inputs.book_version),
           type: inputs.type,
-          property: inputs.property,
+          language: inputs.language,
           latitude: inputs.latitude,
           longitude: inputs.longitude,
           images: images,
@@ -36,15 +36,15 @@ function NewPostPage() {
         postDetail: {
           desc: value,
           utilities: inputs.utilities,
-          pet: inputs.pet,
-          income: inputs.income,
-          size: parseInt(inputs.size),
-          school: parseInt(inputs.school),
-          bus: parseInt(inputs.bus),
-          restaurant: parseInt(inputs.restaurant),
+          condition: inputs.condition,
+          other_policy: inputs.other_policy,
+          pageNumber: parseInt(inputs.pageNumber),
+          isbn: parseInt(inputs.isbn),
+          publish_year: parseInt(inputs.publish_year),
+          rating: parseInt(inputs.rating),
         },
       });
-      navigate("/"+res.data.id)
+      navigate("/" + res.data.id);
     } catch (err) {
       console.log(err);
       setError(error);
@@ -66,8 +66,8 @@ function NewPostPage() {
               <input id="price" name="price" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="address">Author</label>
-              <input id="address" name="address" type="text" />
+              <label htmlFor="author">Author</label>
+              <input id="author" name="author" type="text" />
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>
@@ -78,12 +78,17 @@ function NewPostPage() {
               <input id="city" name="city" type="text" />
             </div>
             <div className="item">
-              <label htmlFor="bedroom">Quantity</label>
-              <input min={1} id="bedroom" name="bedroom" type="number" />
+              <label htmlFor="quantity">Quantity</label>
+              <input min={1} id="quantity" name="quantity" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bathroom">Version</label>
-              <input min={1} id="bathroom" name="bathroom" type="number" />
+              <label htmlFor="book_version">Version</label>
+              <input
+                min={1}
+                id="book_version"
+                name="book_version"
+                type="number"
+              />
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>
@@ -104,11 +109,11 @@ function NewPostPage() {
             </div>
             <div className="item">
               <label htmlFor="type">Language</label>
-              <select name="property">
-                <option value="apartment">English</option>
-                <option value="house">Hindi</option>
-                <option value="condo">Punjabi</option>
-                <option value="land">Other</option>
+              <select name="language">
+                <option value="english">English</option>
+                <option value="hindi">Hindi</option>
+                <option value="punjabi">Punjabi</option>
+                <option value="other">Other</option>
               </select>
             </div>
 
@@ -121,36 +126,41 @@ function NewPostPage() {
               </select>
             </div>
             <div className="item">
-              <label htmlFor="pet">Condition</label>
-              <select name="pet">
+              <label htmlFor="condition">Condition</label>
+              <select name="condition">
                 <option value="allowed">New</option>
                 <option value="not-allowed">Used</option>
               </select>
             </div>
             <div className="item">
-              <label htmlFor="income">Other Policy</label>
+              <label htmlFor="other_policy">Other Policy</label>
               <input
-                id="income"
-                name="income"
+                id="other_policy"
+                name="other_policy"
                 type="text"
                 placeholder="Other Policy"
               />
             </div>
             <div className="item">
-              <label htmlFor="size">Number of (pages)</label>
-              <input min={0} id="size" name="size" type="number" />
+              <label htmlFor="pageNumber">Number of (pages)</label>
+              <input min={0} id="pageNumber" name="pageNumber" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="school">ISBN</label>
-              <input min={0} id="school" name="school" type="number" />
+              <label htmlFor="isbn">ISBN</label>
+              <input min={0} id="isbn" name="isbn" type="number" />
             </div>
             <div className="item">
-              <label htmlFor="bus">Publish Year</label>
-              <input min={0} id="bus" name="bus" type="number" />
+              <label htmlFor="publish_year">Publish Year</label>
+              <input
+                min={0}
+                id="publish_year"
+                name="publish_year"
+                type="number"
+              />
             </div>
             <div className="item">
-              <label htmlFor="restaurant"> Rating</label>
-              <input min={0} id="restaurant" name="restaurant" type="number" />
+              <label htmlFor="rating"> Rating</label>
+              <input min={0} max={10} id="rating" name="rating" type="number" />
             </div>
             <button className="sendButton">Add</button>
             {error && <span>error</span>}
@@ -164,7 +174,7 @@ function NewPostPage() {
         <UploadWidget
           uwConfig={{
             multiple: true,
-            cloudName: "website",
+            cloudName: "lamadev",
             uploadPreset: "estate",
             folder: "posts",
           }}

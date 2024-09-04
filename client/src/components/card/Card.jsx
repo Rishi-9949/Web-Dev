@@ -35,36 +35,45 @@ function Card({ item }) {
         <h2 className="title">
           <Link to={`/${item.id}`}>{item.title}</Link>
         </h2>
-        <p className="address">
-          <img src="/pin.png" alt="" />
-          <span>{item.address}</span>
+        <p className="author">
+          <img src="/author.png" alt="" />
+          <span>{item.author}</span>
         </p>
         <p className="price">$ {item.price}</p>
         <div className="bottom">
           <div className="features">
             <div className="feature">
-              <img src="/bed.png" alt="" />
-              <span>{item.bedroom} Quantity</span>
+              <img src="/language.png" alt="" />
+              <span>
+                {item.language.charAt(0).toUpperCase() + item.language.slice(1)}
+              </span>
             </div>
             <div className="feature">
-              <img src="/bath.png" alt="" />
-              <span>{item.bathroom} Version</span>
+              <img src="/quality.png" alt="" />
+              <div className="featureText">
+                {item.target_audience === "allowed" ? (
+                  <p>New</p>
+                ) : (
+                  <p>Used</p>
+                )}
+              </div>
             </div>
+
           </div>
           <div className="icons">
-            <div 
-              className="icon" 
+            <div
+              className="icon"
               onClick={handleSave}
               style={{
-                cursor: 'pointer',
+                cursor: "pointer",
                 backgroundColor: saved ? "#fece51" : "transparent",
-                padding: '5px', // Optional: Add padding for better clickability
-                borderRadius: '5px' // Optional: Add rounded corners if needed
+                padding: "5px", // Optional: Add padding for better clickability
+                borderRadius: "5px", // Optional: Add rounded corners if needed
               }}
             >
-              <img 
-                src="/save.png" 
-                alt="" 
+              <img
+                src="/save.png"
+                alt=""
                 style={{
                   backgroundColor: saved ? "#fece51" : "white",
                 }}

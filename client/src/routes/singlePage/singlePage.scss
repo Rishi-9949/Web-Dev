@@ -48,7 +48,7 @@
             h1 {
               font-weight: 400;
             }
-            .address {
+            .author {
               display: flex;
               gap: 5px;
               align-items: center;
@@ -163,11 +163,11 @@
       }
       .listHorizontal {
         display: flex;
-          justify-content: space-between;
-          gap: 20px;
-          padding: 20px 10px ;
-          background-color: white;
-          border-radius: 10px;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 20px 10px;
+        background-color: white;
+        border-radius: 10px;
       }
 
       .sizes {

@@ -29,33 +29,38 @@ function SinglePage() {
 
   const startNewChat = async () => {
     const receiverId = post.userId; // Use post.userId instead of post.user.id
-  
+
     if (!receiverId) {
       console.error("Error: Receiver ID is missing! Post data:", post);
       return; // Prevent further execution if receiverId is not available
     }
-  
+
     console.log("Starting new chat with receiverId:", receiverId);
-  
+
     try {
       // Send a request to create a new chat with the receiver's ID
       const res = await apiRequest.post("/api/chats", { receiverId });
-  
+
       // Check if the chat was successfully created
       if (res.status === 201) {
         const chatId = res.data.id;
         console.log("New chat created with ID:", chatId);
-  
-        // Send an initial message in the new chat    
-        const messageRes = await apiRequest.post(`/api/messages/${chatId}`, { text: "Hello! I am interested in your post." });
-  
+
+        // Send an initial message in the new chat
+        const messageRes = await apiRequest.post(`/api/messages/${chatId}`, {
+          text: "Hello! I am interested in your post.",
+        });
+
         // Check if the message was sent successfully
         if (messageRes.status === 200) {
           console.log("Message sent successfully");
           // Navigate to the chat page
           navigate(`/api/chats`);
         } else {
-          console.error("Failed to send the initial message:", messageRes.status);
+          console.error(
+            "Failed to send the initial message:",
+            messageRes.status
+          );
           throw new Error("Failed to send the initial message");
         }
       } else {
@@ -64,15 +69,13 @@ function SinglePage() {
       }
     } catch (err) {
       // Log errors clearly to understand any potential issues
-      console.error("Error creating chat:", err.response ? err.response.data : err.message);
+      console.error(
+        "Error creating chat:",
+        err.response ? err.response.data : err.message
+      );
     }
   };
-  
-  
-  
-  
 
-  
   return (
     <div className="singlePage">
       <div className="details">
@@ -82,9 +85,9 @@ function SinglePage() {
             <div className="top">
               <div className="post">
                 <h1>{post.title}</h1>
-                <div className="address">
-                  <img src="/pin.png" alt="" />
-                  <span>{post.address}</span>
+                <div className="author">
+                  <img src="/author.png" alt="" />
+                  <span>{post.author}</span>
                 </div>
                 <div className="price">$ {post.price}</div>
               </div>
@@ -118,10 +121,10 @@ function SinglePage() {
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
+              <img src="/quality.png" alt="" />
               <div className="featureText">
                 <span>Condition</span>
-                {post.postDetail.pet === "allowed" ? (
+                {post.postDetail.condition === "allowed" ? (
                   <p>New</p>
                 ) : (
                   <p>Used</p>
@@ -132,51 +135,52 @@ function SinglePage() {
               <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Other Policy</span>
-                <p>{post.postDetail.income}</p>
+                <p>{post.postDetail.other_policy}</p>
               </div>
             </div>
           </div>
           <p className="title">About The Book</p>
           <div className="sizes">
             <div className="size">
-              <img src="/size.png" alt="" />
-              <span>{post.postDetail.size} pages</span>
+              <img src="/number_of_pages.png" alt="" />
+              <span>{post.postDetail.pageNumber} pages</span>
             </div>
             <div className="size">
-              <img src="/bed.png" alt="" />
-              <span>{post.bedroom} Quanity</span>
+              <img src="/language.png" alt="" />
+              <span>
+                {post.language.charAt(0).toUpperCase() + post.language.slice(1)}
+              </span>
             </div>
             <div className="size">
-              <img src="/bath.png" alt="" />
-              <span>{post.bathroom} Version</span>
+              <img src="/type.png" alt="" />
+              <span>
+                {post.type.charAt(0).toUpperCase() + post.type.slice(1)}
+              </span>
             </div>
           </div>
           <p className="title">Other Info</p>
           <div className="listHorizontal">
             <div className="feature">
-              <img src="/school.png" alt="" />
               <div className="featureText">
                 <span>ISBN</span>
                 <p>
-                  {post.postDetail.school > 999
-                    ? post.postDetail.school / 1000 + "km"
-                    : post.postDetail.school + " "}{" "}
-                  
+                  {post.postDetail.isbn > 999
+                    ? post.postDetail.isbn
+                    : post.postDetail.isbn + " "}{" "}
                 </p>
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
               <div className="featureText">
-                <span>Publish year</span>
-                <p>{post.postDetail.bus} </p>
+                <span>Publish Year</span>
+                <p>{post.postDetail.publish_year} </p>
               </div>
             </div>
             <div className="feature">
-              <img src="/fee.png" alt="" />
+              <img src="/review.png" alt="" />
               <div className="featureText">
-                <span>Weight</span>
-                <p>{post.postDetail.restaurant} grams</p>
+                <span>Rating</span>
+                <p>{post.postDetail.rating}/10 ★</p>
               </div>
             </div>
           </div>
@@ -185,23 +189,23 @@ function SinglePage() {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-          <button onClick={startNewChat}>
-            <img src="/chat.png" alt="" />
-            Send a Message
-          </button>
+            <button onClick={startNewChat}>
+              <img src="/chat.png" alt="" />
+              Send a Message
+            </button>
 
-          <button
-            onClick={handleSave}
-            style={{
-              backgroundColor: saved ? "#fece51" : "white",
-            }}
-          >
-            <img src="/save.png" alt="" />
-            {saved ? "Place Saved" : "Save the Place"}
-          </button>
+            <button
+              onClick={handleSave}
+              style={{
+                backgroundColor: saved ? "#fece51" : "white",
+              }}
+            >
+              <img src="/save.png" alt="" />
+              {saved ? "Place Saved" : "Save the Place"}
+            </button>
+          </div>
         </div>
       </div>
-        </div>
     </div>
   );
 }

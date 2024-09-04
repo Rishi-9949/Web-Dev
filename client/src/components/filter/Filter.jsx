@@ -7,10 +7,10 @@ function Filter() {
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
     city: searchParams.get("city") || "",
-    property: searchParams.get("property") || "",
+    language: searchParams.get("language") || "",
     minPrice: searchParams.get("minPrice") || "",
     maxPrice: searchParams.get("maxPrice") || "",
-    bedroom: searchParams.get("bedroom") || "",
+    quantity: searchParams.get("quantity") || "",
   });
 
   const handleChange = (e) => {
@@ -57,18 +57,18 @@ function Filter() {
           </select>
         </div>
         <div className="item">
-          <label htmlFor="property">Language</label>
+          <label htmlFor="language">Language</label>
           <select
-            name="property"
-            id="property"
+            name="language"
+            id="language"
             onChange={handleChange}
-            defaultValue={query.property}
+            defaultValue={query.language}
           >
             <option value="">any</option>
-            <option value="apartment">English</option>
-            <option value="house">Punjabi</option>
-            <option value="condo">Hindi</option>
-            <option value="land">other</option>
+            <option value="english">English</option>
+            <option value="hindi">Punjabi</option>
+            <option value="punjabi">Hindi</option>
+            <option value="other">other</option>
           </select>
         </div>
         <div className="item">
@@ -94,14 +94,14 @@ function Filter() {
           />
         </div>
         <div className="item">
-          <label htmlFor="bedroom">Publish Year</label>
+          <label htmlFor="quantity">Publish Year</label>
           <input
             type="text"
-            id="bedroom"
-            name="bedroom"
+            id="quantity"
+            name="quantity"
             placeholder="any"
             onChange={handleChange}
-            defaultValue={query.bedroom}
+            defaultValue={query.quantity}
           />
         </div>
         <button onClick={handleFilter}>
