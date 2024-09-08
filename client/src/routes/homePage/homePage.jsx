@@ -11,13 +11,9 @@ function HomePage() {
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
+          <h1 className="title">Your Local Book  Marketplace</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
-          </p>
+            Your own Bookstore, the book marketplace where readers buy, sell, and trade books locally, just like Facebook Marketplace but for books! Connect with fellow book lovers, find new reads, and swap your old favorites easily in a community that shares your passion for stories.          </p>
           <SearchBar />
           <div className="boxes">
             <div className="box">
